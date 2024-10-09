@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "nombre": "Inicio",
+      "enlace": "/inicio",
+      "icono": "home"
+    },
+    {
+      "id": 2,
+      "nombre": "Sobre Nosotros",
+      "enlace": "/sobre-nosotros",
+      "icono": "info"
+    },
+    {
+      "id": 3,
+      "nombre": "Servicios",
+      "enlace": "/servicios",
+      "icono": "services"
+    },
+    {
+      "id": 4,
+      "nombre": "Contacto",
+      "enlace": "/contacto",
+      "icono": "contact"
+    }
+  ]
+}

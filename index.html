@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Dinámico Moderno</title>
+  
+  <!-- Estilos CSS para el diseño moderno -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #008CBA;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: white;
+      padding: 12px 20px;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #005f7a;
+    }
+    .icon {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    label {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    input, button {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005f7a;
+    }
+  </style>
+  
+  <!-- Font Awesome para los íconos -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Menú dinámico -->
+  <nav id="menu"></nav>
+
+  <!-- Formulario para agregar nuevas opciones al menú -->
+  <h2>Agregar Nueva Opción al Menú</h2>
+  <form id="agregarOpcion">
+    <label for="nombre">Nombre de la Opción:</label>
+    <input type="text" id="nombre" name="nombre" required>
+    
+    <label for="enlace">Enlace:</label>
+    <input type="text" id="enlace" name="enlace" required>
+
+    <label for="icono">Icono (ej. fas fa-home):</label>
+    <input type="text" id="icono" name="icono" placeholder="Clase de FontAwesome" required>
+
+    <button type="submit">Agregar</button>
+  </form>
+
+  <script>
+    // Cargar el menú desde un archivo JSON (simulado aquí)
+    let menuData = [
+      {
+        id: 1,
+        nombre: "Inicio",
+        enlace: "/inicio",
+        icono: "fas fa-home"
+      },
+      {
+        id: 2,
+        nombre: "Sobre Nosotros",
+        enlace: "/sobre-nosotros",
+        icono: "fas fa-info-circle"
+      },
+      {
+        id: 3,
+        nombre: "Servicios",
+        enlace: "/servicios",
+        icono: "fas fa-concierge-bell"
+      },
+      {
+        id: 4,
+        nombre: "Contacto",
+        enlace: "/contacto",
+        icono: "fas fa-envelope"
+      }
+    ];
+
+    // Función para renderizar el menú dinámico
+    function renderMenu() {
+      const menu = document.getElementById('menu');
+      menu.innerHTML = ''; // Limpiar el menú antes de renderizar
+      menuData.forEach(opcion => {
+        const enlace = document.createElement('a');
+        enlace.href = opcion.enlace;
+        enlace.innerHTML = `<i class="${opcion.icono} icon"></i> ${opcion.nombre}`;
+        menu.appendChild(enlace);
+      });
+    }
+
+    // Renderizar el menú al cargar la página
+    renderMenu();
+
+    // Agregar nueva opción al menú desde el formulario
+    document.getElementById('agregarOpcion').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nombre = document.getElementById('nombre').value;
+      const enlace = document.getElementById('enlace').value;
+      const icono = document.getElementById('icono').value;
+      
+      const nuevaOpcion = {
+        id: menuData.length + 1,
+        nombre: nombre,
+        enlace: enlace,
+        icono: icono
+      };
+      
+      menuData.push(nuevaOpcion);
+      renderMenu(); // Volver a renderizar el menú con la nueva opción
+      
+      // Limpiar el formulario
+      e.target.reset();
+    });
+  </script>
+
+</body>
+</html>
